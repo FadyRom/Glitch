@@ -9,7 +9,6 @@
 
 section {
   width: 100%;
-  min-height: 100vh;
   padding: 2rem;
   gap: 2rem;
   display: flex;
@@ -156,10 +155,10 @@ section {
 
 @media (max-width: 600px) {
   .game-card img {
-    height: 13rem;
+    height: 8rem;
   }
   .game-card {
-    width: 65vw;
+    width: 50vw;
   }
 }
 
@@ -170,7 +169,7 @@ section {
   .rate-release h4,
   .rate-release p {
     height: fit-content;
-    font-size: x-small;
+    font-size: xx-small;
   }
   .list-header h2 {
     font-size: 1rem;
