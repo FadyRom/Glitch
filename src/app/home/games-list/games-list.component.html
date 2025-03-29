@@ -1,0 +1,25 @@
+<section>
+  <div class="list-header">
+    <h2>{{ listHeader() }}</h2>
+    <a [routerLink]="['/', buttonRoute()]">View All</a>
+  </div>
+  <div class="games-list">
+    <div class="games-list-flex">
+      @for (game of gamesList(); track game.id) {
+      <div class="game-card" (click)="gameData(game)">
+        <div class="game-image">
+          <img [src]="game.background_image" [alt]="game.name" />
+        </div>
+        <div class="game-info">
+          <h3>{{ game.name }}</h3>
+
+          <div class="rate-release">
+            <h4>{{ game.released }}</h4>
+            <p class="rating">{{ game.rating }}</p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

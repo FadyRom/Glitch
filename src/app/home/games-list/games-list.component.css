@@ -1,0 +1,195 @@
+@keyframes fadeIn {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+}
+
+section {
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.list-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-header a {
+  --tw-bg-opacity: 1;
+  background-color: rgb(35 38 39 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(254 254 254 / var(--tw-text-opacity));
+  padding: 10px;
+  width: 7rem;
+  text-align: center;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: large;
+  transition: 0.5s;
+}
+
+.list-header a:hover {
+  scale: 1.1;
+  color: rgba(242, 150, 32, 1);
+  background-color: black;
+  box-shadow: 0px 0px 8px white;
+}
+
+.list-header h2 {
+  font-size: xx-large;
+  font-weight: 500;
+}
+
+.games-list {
+  overflow: scroll hidden;
+  width: 100%;
+  min-height: 50vh;
+  padding: 1rem 0;
+}
+
+.games-list-flex {
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+  height: 100%;
+}
+
+.game-card {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 16 18 / var(--tw-bg-opacity));
+
+  width: 22rem;
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.game-image {
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
+}
+
+.game-card:hover .game-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  z-index: 1000;
+  animation: fadeIn 0.5s linear;
+}
+
+.game-card img {
+  height: 20rem;
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.game-card:hover img {
+  scale: 1.2;
+}
+
+.game-info {
+  padding: 1rem;
+}
+
+.rate-release {
+  display: flex;
+  margin-top: 1rem;
+  width: 100%;
+  gap: 10%;
+}
+
+.rate-release p,
+.rate-release h4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  font-weight: 500;
+  color: black;
+  background-color: rgba(242, 150, 32, 1);
+  width: 8rem;
+  height: 3rem;
+  border-radius: 12px;
+  padding: 0.5rem;
+}
+
+.rate-release p:hover::before {
+  content: "rate:";
+}
+
+.rate-release h4 {
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  color: rgb(254 254 254 / var(--tw-text-opacity));
+  background-color: rgb(35 38 39 / var(--tw-bg-opacity));
+
+  width: 15rem;
+}
+
+@media (max-width: 996px) {
+  .games-list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-card {
+    width: 65vw;
+  }
+}
+
+@media (max-width: 425px) {
+  .game-info h3 {
+    font-size: medium;
+  }
+  .rate-release h4,
+  .rate-release p {
+    height: fit-content;
+    font-size: x-small;
+  }
+  .list-header h2 {
+    font-size: 1rem;
+  }
+}
+
+/* scroll bar */
+/* width */
+.games-list::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+.games-list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px white;
+  background-color: transparent;
+}
+
+/* Handle */
+.games-list::-webkit-scrollbar-thumb {
+  background-color: white; /* Dark background */
+
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+}

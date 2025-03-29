@@ -1,0 +1,201 @@
+<app-nav (showSide)="showSide($event)" />
+
+@if (sideState()) {
+
+<aside id="aside-small">
+  <div class="logo-close">
+    <h2>Glitch</h2>
+    <i class="fa-solid fa-close" (click)="showSide2()"></i>
+  </div>
+  <ul class="ul-main">
+    <li class="li-routes">
+      <a
+        routerLink="/"
+        class="main-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-house"></i> home</a
+      >
+    </li>
+
+    <li class="li-routes">
+      <a
+        routerLink="/games"
+        class="main-link"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-gamepad"></i> games</a
+      >
+      <ul class="dropdown">
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/games/trending"
+            ><i class="fa-solid fa-fire"></i> trending</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/games/top-rated"
+            ><i class="fa-solid fa-medal"></i> top Rated</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/games/upcoming"
+            ><i class="fa-solid fa-clock"></i> upcoming</a
+          >
+        </li>
+      </ul>
+    </li>
+    <li class="li-routes">
+      <a
+        class="main-link"
+        routerLinkActive="active-main-link"
+        routerLink="/esports"
+        ><i class="fa-solid fa-trophy"></i> esports</a
+      >
+      <ul class="dropdown">
+        <li class="dropdown-li">
+          <a
+            routerLinkActive="active-dropdown"
+            routerLink="/esports/tournaments"
+            ><i class="fa-solid fa-shield"></i> tournaments</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/esports/live"
+            ><i class="fa-solid fa-video"></i> live Matches</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/esports/rankings"
+            ><i class="fa-solid fa-chart-line"></i> player rankings</a
+          >
+        </li>
+      </ul>
+    </li>
+
+    <li class="li-routes">
+      <a
+        routerLink="/profile"
+        class="main-link"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-user"></i> profile</a
+      >
+    </li>
+
+    <li class="li-routes">
+      <a
+        routerLink="/store"
+        class="main-link"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-store"></i> stores</a
+      >
+    </li>
+
+    <hr />
+
+    <li class="li-routes">
+      <a
+        class="main-link"
+        routerLinkActive="active-main-link"
+        href="mailto: romanyfady22@gmail.com"
+        target="_blank"
+        ><i class="fa-solid fa-headset"></i> contact us</a
+      >
+    </li>
+  </ul>
+</aside>
+}
+<aside id="aside-big">
+  <ul class="ul-main">
+    <li class="li-routes">
+      <a
+        routerLink="/"
+        class="main-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-house"></i> home</a
+      >
+    </li>
+
+    <li class="li-routes">
+      <a
+        routerLink="/games"
+        class="main-link"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-gamepad"></i> games</a
+      >
+      <ul class="dropdown">
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/games/trending"
+            ><i class="fa-solid fa-fire"></i> trending</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/games/top-rated"
+            ><i class="fa-solid fa-medal"></i> top Rated</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/games/upcoming"
+            ><i class="fa-solid fa-clock"></i> upcoming</a
+          >
+        </li>
+      </ul>
+    </li>
+    <li class="li-routes">
+      <a
+        class="main-link"
+        routerLinkActive="active-main-link"
+        routerLink="/esports"
+        ><i class="fa-solid fa-trophy"></i> esports</a
+      >
+      <ul class="dropdown">
+        <li class="dropdown-li">
+          <a
+            routerLinkActive="active-dropdown"
+            routerLink="/esports/tournaments"
+            ><i class="fa-solid fa-shield"></i> tournaments</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/esports/live"
+            ><i class="fa-solid fa-video"></i> live Matches</a
+          >
+        </li>
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/esports/rankings"
+            ><i class="fa-solid fa-chart-line"></i> player rankings</a
+          >
+        </li>
+      </ul>
+    </li>
+
+    <li class="li-routes">
+      <a
+        routerLink="/profile"
+        class="main-link"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-user"></i> profile</a
+      >
+    </li>
+
+    <li class="li-routes">
+      <a
+        routerLink="/store"
+        class="main-link"
+        routerLinkActive="active-main-link"
+        ><i class="fa-solid fa-store"></i> stores</a
+      >
+    </li>
+
+    <hr />
+
+    <li class="li-routes">
+      <a
+        class="main-link"
+        routerLinkActive="active-main-link"
+        href="mailto: romanyfady22@gmail.com"
+        target="_blank"
+        ><i class="fa-solid fa-headset"></i> contact us</a
+      >
+    </li>
+  </ul>
+</aside>

@@ -1,0 +1,181 @@
+.footer {
+  background-color: #111;
+  color: white;
+  padding: 2rem;
+}
+
+i {
+  transition: 0.3s;
+}
+
+a:hover i {
+  color: #ffa500;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Get In Touch Section */
+.get-in-touch {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  color: #ffa500;
+}
+
+.subscribe-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .subscribe-section {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.subscribe-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.subscribe-content p {
+  color: #ccc;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .subscribe-form {
+    flex-direction: row;
+  }
+}
+
+.subscribe-form input {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: white;
+}
+
+.subscribe-form button {
+  padding: 0.75rem 1.5rem;
+  background-color: #ffa500;
+  color: black;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.subscribe-form button:hover {
+  background-color: black;
+  box-shadow: 0 0 10px white;
+  color: white;
+  scale: 1.2;
+}
+
+/* Links Section */
+.links-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .links-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .links-section {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.link-column h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.link-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.link-column a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link-column a:hover {
+  color: #ffa500;
+}
+
+.address p {
+  margin-bottom: 0.5rem;
+}
+
+.location {
+  color: #ffa500;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #ffa500;
+}
+
+/* Copyright */
+.copyright {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+}
+
+.copyright span {
+  color: #ffa500;
+}
+
+.activeLink {
+  color: #ffa500;
+}

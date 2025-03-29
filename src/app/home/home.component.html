@@ -1,0 +1,10 @@
+<app-carousel />
+@if (getGamesSub$ |async) {
+
+<app-games-list
+  [buttonRoute]="'/'"
+  [listHeader]="'Popular Games'"
+  [gamesList]="allGamesArray()"
+/>
+}
+<app-tournaments></app-tournaments>
