@@ -9,7 +9,7 @@
 
 section {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2rem;
   gap: 2rem;
   display: flex;
@@ -155,6 +155,9 @@ section {
 }
 
 @media (max-width: 600px) {
+  .game-card img {
+    height: 13rem;
+  }
   .game-card {
     width: 65vw;
   }
