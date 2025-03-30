@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { NavComponent } from '../nav/nav.component';
+import { NavComponent } from './nav/nav.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({

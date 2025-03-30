@@ -1,0 +1,46 @@
+<div class="paginator">
+  @if (currentPage()!=1) {
+
+  <button
+    class="page-button"
+    [disabled]="currentPage() === 1"
+    (click)="onPageChange(currentPage() - 1)"
+  >
+    <<
+  </button>
+  }
+  <div class="page-numbers">
+    @for (page of visiblePages; track page) {
+
+    <button
+      class="page-number"
+      [class.active]="page === currentPage()"
+      (click)="onPageChange(page)"
+    >
+      {{ page }}
+    </button>
+    } @if (showEllipsis) {
+
+    <span class="ellipsis">...</span>
+    }
+
+    <button
+      class="page-number"
+      [class.active]="totalPages() === currentPage()"
+      (click)="onPageChange(totalPages())"
+    >
+      {{ totalPages() }}
+    </button>
+  </div>
+
+  @if (currentPage()<500) {
+
+  <button
+    class="page-button"
+    [disabled]="currentPage() === totalPages()"
+    (click)="onPageChange(currentPage() + 1)"
+  >
+    >>
+  </button>
+  }
+</div>

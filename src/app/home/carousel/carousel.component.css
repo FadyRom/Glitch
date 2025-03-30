@@ -39,6 +39,28 @@ img {
   height: 20vh;
 }
 
+.second-dynamic-div {
+  position: relative;
+}
+
+.second-dynamic-div::before {
+  font-size: 20px;
+  content: "Explore hudreds of games";
+  text-transform: capitalize;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-shadow: 0 0 10px black;
+}
+
 @media (max-width: 996px) {
   header {
     grid-template-columns: repeat(2, 1fr); /* Main content + sidebar */

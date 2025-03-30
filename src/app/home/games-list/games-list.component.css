@@ -112,6 +112,10 @@ section {
   padding: 1rem;
 }
 
+.game-info h3 {
+  font-size: larger;
+}
+
 .rate-release {
   display: flex;
   margin-top: 1rem;
@@ -145,6 +149,7 @@ section {
   background-color: rgb(35 38 39 / var(--tw-bg-opacity));
 
   width: 15rem;
+  height: 3rem;
 }
 
 @media (max-width: 996px) {
@@ -155,10 +160,16 @@ section {
 
 @media (max-width: 600px) {
   .game-card img {
-    height: 8rem;
+    height: 12rem;
   }
   .game-card {
     width: 50vw;
+  }
+  .rate-release h4,
+  .rate-release p {
+    height: fit-content;
+    font-size: x-small;
+    padding: 5px;
   }
 }
 
@@ -166,13 +177,13 @@ section {
   .game-info h3 {
     font-size: medium;
   }
-  .rate-release h4,
-  .rate-release p {
-    height: fit-content;
-    font-size: xx-small;
-  }
+
   .list-header h2 {
     font-size: 1rem;
+  }
+
+  .rate-release h4 {
+    font-size: xx-small;
   }
 }
 

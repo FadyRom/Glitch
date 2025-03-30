@@ -1,0 +1,85 @@
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page-button,
+.page-number {
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 100%;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.page-button:disabled {
+  background: transparent;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.page-number.active {
+  background: rgba(242, 150, 32, 1);
+  color: black;
+  border: none;
+}
+
+.page-button:hover:not(:disabled),
+.page-number:hover:not(.active) {
+  background: rgba(242, 150, 32, 0.1);
+}
+
+.ellipsis {
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+}
+
+@media (max-width: 600px) {
+  .paginator {
+    width: 100%;
+    gap: 0.3rem;
+  }
+
+  .page-button,
+  .page-number {
+    max-width: 2.5rem;
+    max-height: 2.5rem;
+    font-size: 0.5rem;
+  }
+
+  .page-numbers {
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .page-button,
+  .page-number {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.5rem;
+  }
+}

@@ -1,3 +1,7 @@
+export interface Parent_Platforms {
+  platform: { id: 1; name: string; slug: string };
+}
+
 export interface Game {
   id: number;
   name: string;
@@ -5,6 +9,7 @@ export interface Game {
   released: string;
   background_image: string;
   rating: number;
+  parent_platforms: Parent_Platforms[];
   metacritic?: number;
 }
 

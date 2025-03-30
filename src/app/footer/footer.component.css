@@ -74,8 +74,9 @@ a:hover i {
   padding: 0.75rem;
   background-color: transparent;
   border: 1px solid #333;
-  border-radius: 4px;
+  border-radius: 12px;
   color: white;
+  font-size: 1rem;
 }
 
 .subscribe-form button {
@@ -92,7 +93,7 @@ a:hover i {
   background-color: black;
   box-shadow: 0 0 10px white;
   color: white;
-  scale: 1.2;
+  scale: 1.1;
 }
 
 /* Links Section */

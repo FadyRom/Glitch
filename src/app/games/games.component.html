@@ -1,0 +1,91 @@
+<app-header headerRoute="Games" />
+
+<section class="main-container">
+  @if(isLoading()){
+
+  <app-loading />
+  }
+
+  <!-- Left side - Game Grid -->
+  <div class="game-grid">
+    @for (game of games(); track game.id) {
+    <div class="game-card">
+      <div class="platforms-game-card">
+        @for (platform of game.parent_platforms; track platform.platform.id) {
+        @if(platform.platform.slug == 'pc'){
+        <i class="fa-solid fa-computer"></i>
+        } @if(platform.platform.slug === 'playstation'){
+        <i class="fa-brands fa-playstation"></i>
+        } @if(platform.platform.slug == 'xbox'){
+        <i class="fa-brands fa-xbox"></i>
+        } }
+      </div>
+      <img [src]="game.background_image" [alt]="game.name" />
+      <div class="game-info">
+        <h3>{{ game.name }}</h3>
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Right side - Filters -->
+  <div class="filters">
+    <!-- Price Range -->
+
+    <!-- Platforms -->
+    <div class="filter-section">
+      <h2>Platforms</h2>
+      <div class="checkbox-list">
+        @for (platform of platforms; track platform) {
+
+        <label
+          [class.selected]="isPlatformSelected(platform)"
+          (click)="togglePlatform(platform)"
+        >
+          <div
+            class="custom-checkbox"
+            [class.checked]="isPlatformSelected(platform)"
+          >
+            <div class="checkmark"></div>
+          </div>
+          <span>{{ platform }}</span>
+        </label>
+        }
+        <button class="filter-button">Filter The Platform</button>
+      </div>
+    </div>
+
+    <!-- Genres -->
+    <div class="filter-section">
+      <h2>Genres</h2>
+      <div class="checkbox-list">
+        @for (genre of genres; track genre.id) {
+
+        <label
+          [class.selected]="isGenreSelected(genre.name)"
+          (click)="toggleGenre(genre.id)"
+        >
+          <div
+            class="custom-checkbox"
+            [class.checked]="isGenreSelected(genre.name)"
+          >
+            <div class="checkmark"></div>
+          </div>
+          <span>{{ genre.name }}</span>
+        </label>
+        }
+        <button class="filter-button">Filter The Genre</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pagination -->
+
+@if (!isLoading()) {
+
+<app-paginator
+  (pageChange)="pageChange($event)"
+  [currentPage]="currentPage()"
+/>
+}

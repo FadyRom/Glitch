@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   allGamesArray = computed(() => this.abiosApiService.allGames());
 
-  getGamesSub$ = this.abiosApiService.getAllGames();
+  getGamesSub$ = this.abiosApiService.getHomeGames();
 
   ngOnInit(): void {
     // this.abiosApiService.getAllGames().subscribe();
