@@ -1,4 +1,5 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paginator',
@@ -8,9 +9,9 @@ import { Component, input, output, signal } from '@angular/core';
   styleUrl: './paginator.component.css',
 })
 export class PaginatorComponent {
-  currentPage = input<number>(400);
+  currentPage = input<number>(1);
   totalPages = signal<number>(1000);
-  pageChange = output<number>();
+  private router = inject(Router);
 
   get visiblePages(): number[] {
     const maxVisiblePages = 9;
@@ -53,7 +54,10 @@ export class PaginatorComponent {
 
   onPageChange(page: number): void {
     if (page >= 1 && page <= this.totalPages()) {
-      this.pageChange.emit(page);
+      this.router.navigate(['/games'], {
+        queryParams: { page: page },
+        queryParamsHandling: 'merge', // Keeps existing query params
+      });
     }
   }
 }

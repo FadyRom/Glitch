@@ -84,8 +84,5 @@
 
 @if (!isLoading()) {
 
-<app-paginator
-  (pageChange)="pageChange($event)"
-  [currentPage]="currentPage()"
-/>
+<app-paginator [currentPage]="currentPage()" />
 }
