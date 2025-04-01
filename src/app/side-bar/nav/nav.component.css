@@ -23,7 +23,6 @@ nav,
 h2 {
   color: rgba(242, 150, 32, 1);
   font-size: 2.5rem;
-  margin-top: 1rem;
   font-family: poppins;
 }
 
@@ -70,11 +69,6 @@ h2 {
   border-radius: 100px;
   width: 12rem;
 }
-
-.latest-news p {
-  margin-top: 5%;
-}
-
 .latest-news span {
   background-color: rgba(242, 150, 32, 1);
   padding: 10px;
@@ -133,7 +127,6 @@ h2 {
   }
   h2 {
     font-size: 1.5rem;
-    margin-top: 0.5rem;
   }
   #search-field {
     padding: 10px;

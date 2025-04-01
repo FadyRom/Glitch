@@ -2,11 +2,13 @@ import {
   Component,
   DestroyRef,
   effect,
+  ElementRef,
   inject,
   OnChanges,
   OnInit,
   signal,
   SimpleChanges,
+  viewChild,
 } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { AbiosApiService } from '../rawg-api.service';
@@ -15,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { PaginatorComponent } from '../paginator/paginator.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GamingService } from './gaming.service';
 
 @Component({
   selector: 'app-games',
@@ -28,43 +31,32 @@ export class GamesComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private gamingService = inject(GamingService);
+
+  gamesGrid = viewChild<ElementRef<HTMLDivElement>>('gamesGrid');
 
   games = signal<Game[]>([]);
   isLoading = signal(true);
 
-  platforms = ['Playstation', 'XBOX', 'PC'];
-  genres = [
-    { id: 4, name: 'Action' },
-    { id: 51, name: 'Indie' },
-    { id: 3, name: 'Adventure' },
-    { id: 5, name: 'RPG' },
-    { id: 10, name: 'Strategy' },
-    { id: 2, name: 'Shooter' },
-    { id: 40, name: 'Casual' },
-    { id: 14, name: 'Simulation' },
-    { id: 7, name: 'Puzzle' },
-    { id: 11, name: 'Arcade' },
-    { id: 83, name: 'Platformer' },
-    { id: 1, name: 'Racing' },
-    { id: 59, name: 'Massively Multiplayer' },
-    { id: 15, name: 'Sports' },
-    { id: 6, name: 'Fighting' },
-    { id: 19, name: 'Family' },
-    { id: 28, name: 'Board Games' },
-    { id: 34, name: 'Educational' },
-    { id: 17, name: 'Card' },
-  ];
+  platforms = this.gamingService.platforms;
+  genres = this.gamingService.genres;
   currentPage = signal<number>(1);
-  totalPages = signal<number>(1000);
-  selectedPlatforms: string[] = [];
-  selectedGenres: string[] = [];
-  priceRange: number = 14;
+  totalPages = signal<number>(400);
+  selectedPlatforms = signal<string[]>([]);
+  selectedGenres = signal<string[]>([]);
 
   ngOnInit(): void {
     const routeSub = this.route.queryParams.subscribe({
-      next: (params) => {
+      next: (params: any) => {
+        if (params.platform) {
+          this.checkPlatformParams(params.platform);
+        }
+        if (params.page || params.platforms || params.genre) {
+          this.gamesGrid()!.nativeElement.scrollIntoView({
+            behavior: 'smooth',
+          });
+        }
         this.currentPage.set(params['page'] ? Number(params['page']) : 1);
-        this.fetchGames(this.currentPage());
         if (this.currentPage() > this.totalPages()) {
           this.currentPage.set(this.totalPages());
           this.router.navigate(['/games'], {
@@ -72,7 +64,7 @@ export class GamesComponent implements OnInit {
             queryParamsHandling: 'merge', // Keeps existing query params
           });
         } else {
-          this.fetchGames(this.currentPage());
+          this.fetchGames(this.currentPage(), params.platform);
         }
       },
     });
@@ -82,8 +74,23 @@ export class GamesComponent implements OnInit {
     });
   }
 
-  private fetchGames(page: number = 1) {
-    const sub = this.rawgApiService.getAllGames(page, 21).subscribe({
+  checkPlatformParams(params: string) {
+    if (params) {
+      let platforms = params.split(',');
+      if (platforms.includes('1')) {
+        this.selectedPlatforms().push('PC');
+      }
+      if (platforms.includes('3')) {
+        this.selectedPlatforms().push('XBOX');
+      }
+      if (platforms.includes('2')) {
+        this.selectedPlatforms().push('Playstation');
+      }
+    }
+  }
+
+  private fetchGames(page: number = 1, platform?: string) {
+    const sub = this.rawgApiService.getAllGames(page, platform).subscribe({
       next: (res) => {
         this.isLoading.set(true);
         this.games.set(res.results);
@@ -91,7 +98,7 @@ export class GamesComponent implements OnInit {
       complete: () => {
         setTimeout(() => {
           this.isLoading.set(false);
-        }, 2000);
+        }, 500);
       },
     });
 
@@ -99,40 +106,52 @@ export class GamesComponent implements OnInit {
   }
 
   togglePlatform(platform: string) {
-    const index = this.selectedPlatforms.indexOf(platform);
+    const index = this.selectedPlatforms().indexOf(platform);
     if (index === -1) {
-      this.selectedPlatforms.push(platform);
+      this.selectedPlatforms().push(platform);
     } else {
-      this.selectedPlatforms.splice(index, 1);
+      this.selectedPlatforms().splice(index, 1);
     }
   }
 
-  toggleGenre(genre: number) {
-    const index = this.selectedGenres.indexOf(String(genre));
-    if (index === -1) {
-      this.selectedGenres.push(String(genre));
-    } else {
-      this.selectedGenres.splice(index, 1);
-    }
+  applyPlatformFilters() {
+    this.gamingService.applyPlatformFilters(
+      this.selectedPlatforms(),
+      this.currentPage()
+    );
   }
 
   isPlatformSelected(platform: string): boolean {
-    return this.selectedPlatforms.includes(platform);
+    return this.selectedPlatforms().includes(platform);
+  }
+
+  toggleGenre(genre: string) {
+    const index = this.selectedGenres().indexOf(genre);
+    if (index === -1) {
+      this.selectedGenres().push(genre);
+    } else {
+      this.selectedGenres().splice(index, 1);
+    }
+  }
+
+  applyGenreFilters() {
+    console.log(this.selectedGenres());
   }
 
   isGenreSelected(genre: string): boolean {
-    return this.selectedGenres.includes(genre);
+    return this.selectedGenres().includes(genre);
   }
 
   pageChange(event: number) {
     this.currentPage.set(event);
-    if (event <= 500 && event > 0) {
+    if (event <= this.totalPages() && event > 0) {
       window.scrollTo({ top: 300, behavior: 'smooth' });
-      this.fetchGames(this.currentPage());
       this.router.navigate(['/games'], {
         queryParams: { page: this.currentPage() },
         queryParamsHandling: 'merge', // Keeps existing query params
       });
     }
   }
+
+  selectedGame(gameId: number) {}
 }

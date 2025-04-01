@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PaginatorComponent {
   currentPage = input<number>(1);
-  totalPages = signal<number>(1000);
+  totalPages = signal<number>(400);
   private router = inject(Router);
 
   get visiblePages(): number[] {

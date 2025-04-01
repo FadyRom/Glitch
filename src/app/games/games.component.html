@@ -7,9 +7,9 @@
   }
 
   <!-- Left side - Game Grid -->
-  <div class="game-grid">
+  <div class="game-grid" #gamesGrid>
     @for (game of games(); track game.id) {
-    <div class="game-card">
+    <div class="game-card" (click)="selectedGame(game.id)">
       <div class="platforms-game-card">
         @for (platform of game.parent_platforms; track platform.platform.id) {
         @if(platform.platform.slug == 'pc'){
@@ -51,7 +51,9 @@
           <span>{{ platform }}</span>
         </label>
         }
-        <button class="filter-button">Filter The Platform</button>
+        <button class="filter-button" (click)="applyPlatformFilters()">
+          Apply Filters
+        </button>
       </div>
     </div>
 
@@ -63,7 +65,7 @@
 
         <label
           [class.selected]="isGenreSelected(genre.name)"
-          (click)="toggleGenre(genre.id)"
+          (click)="toggleGenre(genre.name)"
         >
           <div
             class="custom-checkbox"
@@ -74,7 +76,9 @@
           <span>{{ genre.name }}</span>
         </label>
         }
-        <button class="filter-button">Filter The Genre</button>
+        <button class="filter-button" (click)="applyGenreFilters()">
+          Apply Filters
+        </button>
       </div>
     </div>
   </div>
