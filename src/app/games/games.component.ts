@@ -48,6 +48,7 @@ export class GamesComponent implements OnInit {
   ngOnInit(): void {
     const routeSub = this.route.queryParams.subscribe({
       next: (params: any) => {
+        console.log(params);
         if (params.platform) {
           this.checkPlatformParams(params.platform);
         }
@@ -64,7 +65,7 @@ export class GamesComponent implements OnInit {
             queryParamsHandling: 'merge', // Keeps existing query params
           });
         } else {
-          this.fetchGames(this.currentPage(), params.platform);
+          this.fetchGames(this.currentPage(), params.platform, params.genre);
         }
       },
     });
@@ -89,18 +90,20 @@ export class GamesComponent implements OnInit {
     }
   }
 
-  private fetchGames(page: number = 1, platform?: string) {
-    const sub = this.rawgApiService.getAllGames(page, platform).subscribe({
-      next: (res) => {
-        this.isLoading.set(true);
-        this.games.set(res.results);
-      },
-      complete: () => {
-        setTimeout(() => {
-          this.isLoading.set(false);
-        }, 500);
-      },
-    });
+  private fetchGames(page: number = 1, platform?: string, genres?: string) {
+    const sub = this.rawgApiService
+      .getAllGames(page, platform, genres)
+      .subscribe({
+        next: (res) => {
+          this.isLoading.set(true);
+          this.games.set(res.results);
+        },
+        complete: () => {
+          setTimeout(() => {
+            this.isLoading.set(false);
+          }, 500);
+        },
+      });
 
     this.destroyRef.onDestroy(() => sub.unsubscribe());
   }
@@ -135,7 +138,10 @@ export class GamesComponent implements OnInit {
   }
 
   applyGenreFilters() {
-    console.log(this.selectedGenres());
+    this.gamingService.applyGenreFilters(
+      this.selectedGenres(),
+      this.currentPage()
+    );
   }
 
   isGenreSelected(genre: string): boolean {

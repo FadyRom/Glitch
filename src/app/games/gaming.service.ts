@@ -51,4 +51,25 @@ export class GamingService {
       queryParamsHandling: platformParams.length ? 'merge' : undefined, // Only merge if there are platform params
     });
   }
+
+  applyGenreFilters(selectedGenres: string[], currentPage: number) {
+    let genreParams: number[] = [];
+
+    // Map selected genre names to their corresponding IDs
+    this.genres.forEach((genre) => {
+      if (selectedGenres.includes(genre.name)) {
+        genreParams.push(genre.id);
+      }
+    });
+
+    // If no genres are selected, remove 'genre' from query params
+    const queryParams = genreParams.length
+      ? { page: currentPage, genre: genreParams.join(',') }
+      : { page: currentPage };
+
+    this.router.navigate(['/games'], {
+      queryParams,
+      queryParamsHandling: genreParams.length ? 'merge' : undefined, // Only merge if genres exist
+    });
+  }
 }
