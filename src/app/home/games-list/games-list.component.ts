@@ -12,6 +12,7 @@ import { Game } from '../../interfaces';
 export class GamesListComponent implements OnInit {
   listHeader = input.required<string>();
   buttonRoute = input.required<string>();
+  querParams = input<string>('');
   gamesList = input.required<Game[]>();
 
   ngOnInit(): void {}

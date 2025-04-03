@@ -2,9 +2,12 @@
   padding: 1rem;
 }
 
+.overview-section h2 {
+  color: rgba(242, 150, 32, 1);
+}
+
 .all-platforms {
   margin: 1rem 0;
-  padding: 0.5rem;
 }
 
 .platforms {
@@ -33,6 +36,9 @@ article {
 @media (max-width: 996px) {
   .overview-div {
     width: 100%;
+  }
+  article {
+    font-size: small;
   }
 }
 

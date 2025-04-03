@@ -3,10 +3,8 @@ header {
   width: 100%;
   height: 400px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   border-radius: 30px;
-  padding: 0 10vw;
+  padding: 13vh 10vw;
 }
 
 header::before {

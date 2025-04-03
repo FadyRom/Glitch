@@ -1,7 +1,9 @@
 <section>
   <div class="list-header">
     <h2>{{ listHeader() }}</h2>
-    <a [routerLink]="['/', buttonRoute()]">View All</a>
+    <a [routerLink]="[buttonRoute()]" [queryParams]="{ genre: querParams() }"
+      >View All</a
+    >
   </div>
   <div class="games-list">
     <div class="games-list-flex">

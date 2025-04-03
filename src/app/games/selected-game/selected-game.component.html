@@ -20,3 +20,10 @@
     </article>
   </div>
 </section>
+
+<app-games-list
+  [buttonRoute]="'/games'"
+  [querParams]="genreIdString"
+  [gamesList]="similarGames()"
+  listHeader="similar games"
+/>
