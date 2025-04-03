@@ -1,7 +1,7 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { CarouselComponent } from './carousel/carousel.component';
 import { GamesListComponent } from './games-list/games-list.component';
-import { AbiosApiService } from '../rawg-api.service';
+import { RawgApiService } from '../rawg-api.service';
 import { AsyncPipe } from '@angular/common';
 import { TournamentsComponent } from './tournaments/tournaments.component';
 
@@ -18,13 +18,13 @@ import { TournamentsComponent } from './tournaments/tournaments.component';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  private abiosApiService = inject(AbiosApiService);
+  private RawgApiService = inject(RawgApiService);
 
-  allGamesArray = computed(() => this.abiosApiService.allGames());
+  allGamesArray = computed(() => this.RawgApiService.allGames());
 
-  getGamesSub$ = this.abiosApiService.getHomeGames();
+  getGamesSub$ = this.RawgApiService.getHomeGames();
 
   ngOnInit(): void {
-    // this.abiosApiService.getAllGames().subscribe();
+    // this.RawgApiService.getAllGames().subscribe();
   }
 }

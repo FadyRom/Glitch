@@ -12,9 +12,9 @@
   position: sticky;
   top: 50%;
   left: 47%;
-  background-color: greenyellow;
+  color: greenyellow;
+  background-color: white;
   font-size: 100px;
-  color: white;
   border-radius: 100%;
   animation: spin 2s ease-in infinite;
 }

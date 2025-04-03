@@ -1,8 +1,7 @@
 header {
   position: relative;
   width: 100%;
-  min-height: 50vh;
-  height: 100%;
+  height: 400px;
   background: url("/header.jpg") no-repeat;
   background-position-y: -15rem;
   background-size: cover;

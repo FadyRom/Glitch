@@ -1,0 +1,70 @@
+<header
+  [ngStyle]="{
+    backgroundImage: 'url(' + gameBackgroundInput() + ') ',
+    'background-repeat': 'no-repeat',
+    'background-size': 'cover'
+  }"
+>
+  <div class="header-info">
+    <h1>{{ gameNameInput() }}</h1>
+    <div class="platforms-game-card">
+      <h3>Platforms:</h3>
+      @for (platform of game().parent_platforms; track platform.platform.id) {
+      @if(platform.platform.slug == 'pc'){
+      <i class="fa-solid fa-computer"></i>
+      } @if(platform.platform.slug === 'playstation'){
+      <i class="fa-brands fa-playstation"></i>
+      } @if(platform.platform.slug == 'xbox'){
+      <i class="fa-brands fa-xbox"></i>
+      } @if(platform.platform.slug == 'nintendo'){
+      <i class="fa fa-gamepad"></i>
+      }@if(platform.platform.slug == 'mac'){
+      <i class="fab fa-apple"></i>
+      } }
+    </div>
+    <button class="info-button library" (click)="addLibrary()">
+      <i
+        [className]="false ? ' fa-solid fa-bookmark' : 'fa-regular fa-bookmark'"
+      >
+      </i>
+      {{ false ? " in library" : " add to library" }}
+    </button>
+    <button class="info-button wish-list" (click)="addWishlist()">
+      <i [className]="false ? ' fa-solid fa-heart' : 'fa-regular fa-heart'">
+      </i>
+      {{ false ? " in wishlist" : " add to wishlist" }}
+    </button>
+  </div>
+  <div class="game-data">
+    <div class="data">
+      <h3>Release Date</h3>
+      <span>{{ game().released }}</span>
+    </div>
+    <div class="data">
+      <h3>Genres</h3>
+      @for (genre of game().genres; track genre.id) { @if (game().genres.length
+      > 1) {
+
+      <span>{{ genre.name }} </span><br />
+      }@else {
+
+      <span>{{ genre.name }} </span>
+      } }
+    </div>
+    <div class="data">
+      <h3>Rating</h3>
+      <span>⭐ {{ game().rating }}/5</span>
+    </div>
+    <div class="data">
+      <h3>Developers</h3>
+      @for (developer of game().developers; track developer.id) { @if
+      (game().genres.length > 1) {
+
+      <span>{{ developer.name }} </span><br />
+      }@else {
+
+      <span>{{ developer.name }} </span>
+      } }
+    </div>
+  </div>
+</header>

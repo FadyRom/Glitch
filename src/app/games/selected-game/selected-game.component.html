@@ -1,0 +1,22 @@
+<app-games-header
+  [gameBackgroundInput]="game().background_image"
+  [gameNameInput]="game().name_original"
+  [game]="game()"
+/>
+
+<section class="overview-section">
+  <div class="all-platforms">
+    <h2>Platforms:</h2>
+    <div class="platforms">
+      @for (platform of game().platforms; track platform.platform.id) {
+      <span>{{ platform.platform.name }}</span>
+      }
+    </div>
+  </div>
+  <h2>Overview</h2>
+  <div class="overview-div">
+    <article class="game-description-article">
+      {{ game().description_raw }}
+    </article>
+  </div>
+</section>

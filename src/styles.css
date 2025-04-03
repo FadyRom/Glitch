@@ -8,6 +8,10 @@
   color: white;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #040410;
 }
@@ -37,7 +41,7 @@ ul {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: black;
+  background-color: #45f882;
   backdrop-filter: blur(10px);
   border-radius: 10px;
 }

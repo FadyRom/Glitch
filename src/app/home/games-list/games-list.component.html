@@ -6,7 +6,11 @@
   <div class="games-list">
     <div class="games-list-flex">
       @for (game of gamesList(); track game.id) {
-      <div class="game-card" (click)="gameData(game)">
+      <div
+        class="game-card"
+        (click)="gameData(game)"
+        [routerLink]="['/games/', game.id]"
+      >
         <div class="game-image">
           <img [src]="game.background_image" [alt]="game.name" />
         </div>

@@ -1,5 +1,6 @@
-import { inject, Injectable, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { Game, GameResponse, RawgApiResponse } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,9 @@ export class GamingService {
     { id: 17, name: 'Card' },
   ];
   platforms = ['Playstation', 'XBOX', 'PC'];
+
+  gamesInLibrary = signal<number[]>([]);
+  gamesInWishlist = signal<number[]>([]);
 
   applyPlatformFilters(selectedPlatforms: string[], currentPage: number) {
     let platformParams: number[] = [];
@@ -71,5 +75,12 @@ export class GamingService {
       queryParams,
       queryParamsHandling: genreParams.length ? 'merge' : undefined, // Only merge if genres exist
     });
+  }
+
+  addGameToWishlist(game: GameResponse) {
+    console.log(game);
+  }
+  addGameToLibrary(game: GameResponse) {
+    console.log(game);
   }
 }

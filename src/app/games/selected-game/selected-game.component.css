@@ -1,0 +1,49 @@
+.overview-section {
+  padding: 1rem;
+}
+
+.all-platforms {
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+.platforms {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.platforms span {
+  background-color: rgba(242, 150, 32, 1);
+  width: fit-content;
+  padding: 5px;
+  border: none;
+  border-radius: 12px;
+}
+
+.overview-div {
+  width: 80%;
+}
+
+article {
+  font-size: medium;
+}
+
+@media (max-width: 996px) {
+  .overview-div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 750px) {
+  .platforms span {
+    font-size: x-small;
+  }
+}
+
+@media (max-width: 400px) {
+  .platforms span {
+    font-size: xx-small;
+  }
+}

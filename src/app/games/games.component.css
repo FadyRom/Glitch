@@ -1,13 +1,28 @@
 .main-container {
   position: relative;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
   background-color: #0a0a0a;
   color: white;
   height: fit-content;
 }
 
+.error-container {
+  width: 100%;
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 10px;
+  position: sticky;
+  top: 5rem;
+  width: 100%; /* Ensure it stretches across */
+  z-index: 1000; /* Keep it above other elements */
+}
 /* Game Grid Styles */
 .game-grid {
   display: grid;
@@ -23,9 +38,35 @@
   overflow: hidden;
   transition: transform 0.3s;
   cursor: pointer;
-  min-width: 10rem;
+  min-width: 11rem;
   width: 100%;
   height: 200px;
+}
+
+.fa-bookmark,
+.fa-heart {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: #f97316;
+  color: black;
+  padding: 10px;
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.fa-bookmark:hover,
+.fa-heart:hover {
+  font-weight: 900; /* This makes it solid */
+}
+
+.fa-heart {
+  top: 50px;
 }
 
 .game-card:hover {
@@ -33,6 +74,7 @@
 }
 
 .platforms-game-card {
+  font-size: 1.2rem;
   position: absolute;
   top: 10px;
   left: 15px;
@@ -70,7 +112,6 @@
 
 /* Filters Styles */
 .filters {
-  min-width: 200px;
   width: 300px;
   padding: 0 10px;
   border-radius: 8px;
@@ -146,6 +187,12 @@
   opacity: 1;
 }
 
+@media (min-width: 997px) and (max-width: 1200px) {
+  .platforms-game-card {
+    font-size: smaller;
+  }
+}
+
 /* Responsive Styles for Small Screens */
 @media screen and (max-width: 996px) {
   .main-container {
@@ -190,6 +237,10 @@
 }
 
 @media (max-width: 768px) {
+  .error {
+    font-size: medium;
+  }
+
   .game-grid {
     grid-template-columns: repeat(1, 1fr);
   }

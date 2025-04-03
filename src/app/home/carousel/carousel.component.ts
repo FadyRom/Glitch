@@ -1,6 +1,7 @@
 import {
   AfterViewChecked,
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
@@ -14,6 +15,8 @@ import {
   styleUrl: './carousel.component.css',
 })
 export class CarouselComponent implements OnInit {
+  private destroyRef = inject(DestroyRef);
+
   carouselArray = signal<string[]>([
     'carousel/god of war.jpg',
     'carousel/highOnLife.jpg',
@@ -24,9 +27,13 @@ export class CarouselComponent implements OnInit {
 
   displayedCarousel = signal(this.carouselArray()[0]);
   ngOnInit() {
-    setInterval(() => {
+    const moveInterval = setInterval(() => {
       this.moveCarousel();
     }, 3000);
+
+    this.destroyRef.onDestroy(() => {
+      clearInterval(moveInterval);
+    });
   }
 
   moveCarousel() {

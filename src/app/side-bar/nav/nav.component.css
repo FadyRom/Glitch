@@ -6,6 +6,10 @@ nav {
   background-color: black;
 }
 
+.glitch-logo {
+  cursor: pointer;
+}
+
 nav,
 .input-logo {
   width: 100%;
@@ -35,9 +39,9 @@ h2 {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  right: 1rem;
+  right: -1rem;
   transform: translateY(-50%);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   transition: color 0.3s;
 }
 
@@ -57,30 +61,6 @@ h2 {
 
 #search-field:focus {
   outline: none;
-}
-
-.latest-news {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: rgba(242, 151, 32, 0.107);
-  padding: 8px 12px;
-  border-radius: 100px;
-  width: 12rem;
-}
-.latest-news span {
-  background-color: rgba(242, 150, 32, 1);
-  padding: 10px;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.latest-news span i {
-  font-size: 1.4rem;
-  color: black;
 }
 
 .signin-burger {
@@ -132,7 +112,6 @@ h2 {
     padding: 10px;
     min-width: 10rem;
   }
-  .latest-news,
   .signin {
     display: none;
   }
@@ -150,15 +129,18 @@ h2 {
     font-size: x-small;
   }
   .search-field-div i {
-    font-size: small;
+    font-size: medium;
   }
 }
 
 @media (max-width: 320px) {
   #search-field {
-    font-size: xx-small;
+    font-size: x-small;
   }
+}
+@media (max-width: 295px) {
   .search-field-div i {
-    font-size: small;
+    right: 0.8rem;
+    background-color: rgb(14, 16, 18);
   }
 }
