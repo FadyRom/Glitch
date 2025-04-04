@@ -39,7 +39,7 @@ export class GamesComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private gamingService = inject(GamingService);
 
-  gamesGrid = viewChild<ElementRef<HTMLDivElement> | undefined>('gamesGrid');
+  // gamesGrid = viewChild<ElementRef<HTMLDivElement> | undefined>('gamesGrid');
 
   games = signal<Game[]>([]);
   isLoading = signal(true);
@@ -78,11 +78,7 @@ export class GamesComponent implements OnInit {
     if (params.platform) {
       this.checkPlatformParams(params.platform);
     }
-    if ((params.page || params.platforms || params.genre) && this.gamesGrid()) {
-      this.gamesGrid()!.nativeElement.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }
+
     this.currentPage.set(params['page'] ? Number(params['page']) : 1);
     if (this.currentPage() > this.totalPages()) {
       this.currentPage.set(this.totalPages());

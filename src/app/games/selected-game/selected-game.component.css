@@ -2,6 +2,22 @@
   padding: 1rem;
 }
 
+.error-container {
+  width: 100%;
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 10px;
+  position: sticky;
+  top: 5rem;
+  width: 100%; /* Ensure it stretches across */
+  z-index: 1000; /* Keep it above other elements */
+}
+
 .overview-section h2 {
   color: rgba(242, 150, 32, 1);
 }
@@ -19,6 +35,7 @@
 
 .platforms span {
   background-color: rgba(242, 150, 32, 1);
+  color: black;
   width: fit-content;
   padding: 5px;
   border: none;
@@ -48,7 +65,7 @@ article {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 320px) {
   .platforms span {
     font-size: xx-small;
   }

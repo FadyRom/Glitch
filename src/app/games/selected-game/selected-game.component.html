@@ -1,3 +1,7 @@
+@if(!errorFetching()){ @if (isLoading()) {
+<app-loading />
+}@else {
+
 <app-games-header
   [gameBackgroundInput]="game().background_image"
   [gameNameInput]="game().name_original"
@@ -27,3 +31,11 @@
   [gamesList]="similarGames()"
   listHeader="similar games"
 />
+} }@else {
+<div class="error-container">
+  <h2 class="error">
+    error fetching your games <br />
+    please check your filters or network
+  </h2>
+</div>
+}
