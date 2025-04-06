@@ -1,0 +1,16 @@
+.error-container {
+  width: 100%;
+  height: 100%;
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 10px;
+  position: sticky;
+  top: 5rem;
+  width: 100%; /* Ensure it stretches across */
+  z-index: 1000; /* Keep it above other elements */
+}

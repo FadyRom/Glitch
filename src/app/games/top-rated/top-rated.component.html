@@ -1,0 +1,10 @@
+<app-header headerRoute="Top Rated" />
+
+@if (topRatedSub$ | async) {
+
+<div class="container">
+  <app-game-grid [games]="topRatedGames()" />
+</div>
+}@else{
+<app-error pleaseCheck="network" />
+}

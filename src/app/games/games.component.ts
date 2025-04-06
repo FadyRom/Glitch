@@ -18,6 +18,8 @@ import { PaginatorComponent } from '../paginator/paginator.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { GamingService } from './gaming.service';
+import { GameGridComponent } from './game-grid/game-grid.component';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-games',
@@ -28,6 +30,8 @@ import { GamingService } from './gaming.service';
     PaginatorComponent,
     LoadingComponent,
     RouterLink,
+    GameGridComponent,
+    ErrorComponent,
   ],
   templateUrl: './games.component.html',
   styleUrl: './games.component.css',
@@ -185,8 +189,4 @@ export class GamesComponent implements OnInit {
   // selectedGame(game: Game) {
 
   // }
-
-  bookmarkGame(gameId: any) {
-    console.log(gameId);
-  }
 }

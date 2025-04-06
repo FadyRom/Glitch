@@ -4,6 +4,7 @@ import { GamesListComponent } from './games-list/games-list.component';
 import { RawgApiService } from '../rawg-api.service';
 import { AsyncPipe } from '@angular/common';
 import { TournamentsComponent } from './tournaments/tournaments.component';
+import { ErrorComponent } from '../error/error.component';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { TournamentsComponent } from './tournaments/tournaments.component';
     GamesListComponent,
     TournamentsComponent,
     AsyncPipe,
+    ErrorComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

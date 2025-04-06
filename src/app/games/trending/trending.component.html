@@ -1,0 +1,10 @@
+<app-header headerRoute="Trending" />
+
+@if (trendingGamesSub$ | async) {
+
+<div class="container">
+  <app-game-grid [games]="trendingGames()" />
+</div>
+}@else{
+<app-error pleaseCheck="network" />
+}

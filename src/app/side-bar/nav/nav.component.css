@@ -39,7 +39,7 @@ h2 {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  right: -1rem;
+  right: -1.5rem;
   transform: translateY(-50%);
   font-size: 1.4rem;
   transition: color 0.3s;
@@ -61,6 +61,7 @@ h2 {
 
 #search-field:focus {
   outline: none;
+  border: 1px solid #ff9f1c;
 }
 
 .signin-burger {

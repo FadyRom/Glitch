@@ -1,0 +1,20 @@
+@if (noData()) {
+<h2>No upcoming matches</h2>
+}@else {
+
+<div class="container">
+  <div class="data-grid">
+    @for (match of matchResponse(); track match.id) {
+
+    <div class="data-card">
+      <img src="/esport.jpg" [alt]="match.league.name" class="card-image" />
+      <div class="data-info">
+        <h3>{{ match.name }}</h3>
+        <p><span>Begin at:</span> {{ match.begin_at | date }}</p>
+        <p><span>League:</span> {{ match.league.name }}</p>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}

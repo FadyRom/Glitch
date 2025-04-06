@@ -17,6 +17,14 @@
       }
     </div>
   </div>
+  <div class="all-platforms">
+    <h2>Stores:</h2>
+    <div class="platforms">
+      @for (store of game().stores; track store.store.id) {
+      <span>{{ store.store.name }}</span>
+      }
+    </div>
+  </div>
   <h2>Overview</h2>
   <div class="overview-div">
     <article class="game-description-article">
@@ -32,10 +40,5 @@
   listHeader="similar games"
 />
 } }@else {
-<div class="error-container">
-  <h2 class="error">
-    error fetching your games <br />
-    please check your filters or network
-  </h2>
-</div>
+<app-error pleaseCheck="Network" />
 }

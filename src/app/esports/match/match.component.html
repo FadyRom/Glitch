@@ -1,0 +1,5 @@
+<app-header [headerRoute]="currentRoute()" />
+
+@if (matchDataSub$ |async) {
+<app-layout [matchResponse]="matchData()" [currentRoute]="currentRoute()" />
+}

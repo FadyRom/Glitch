@@ -6,5 +6,7 @@
   [listHeader]="'Popular Games'"
   [gamesList]="allGamesArray()"
 />
+}@else {
+<app-error pleaseCheck="network" />
 }
 <app-tournaments></app-tournaments>

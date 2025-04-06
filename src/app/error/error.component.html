@@ -1,0 +1,10 @@
+@if(loading()) {
+<app-loading />
+}@else{
+<div class="error-container">
+  <h2 class="error">
+    error fetching your games <br />
+    please check your {{ pleaseCheck() }}
+  </h2>
+</div>
+}

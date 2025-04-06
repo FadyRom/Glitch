@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { rawgKey, url } from '../enviroment';
+import { rawgKey, rawgUrl } from '../enviroment';
 import { Game, GameResponse, RawgApiResponse } from './interfaces';
 import { tap } from 'rxjs';
 
@@ -9,10 +9,13 @@ import { tap } from 'rxjs';
 })
 export class RawgApiService {
   private rawgKey = rawgKey;
-  private apiUrl = url;
+  private apiUrl = rawgUrl;
   private httpClient = inject(HttpClient);
 
   allGames = signal<Game[]>([]);
+  trendingGamesArray = signal<Game[]>([]);
+  topRatedGames = signal<Game[]>([]);
+  upcomingGames = signal<Game[]>([]);
   selectedGameById = signal<GameResponse>({
     id: 0,
     name: '',
@@ -51,14 +54,19 @@ export class RawgApiService {
     tba: false,
     updated: '',
   });
+  loadingPage = signal<boolean>(false);
 
   getHomeGames() {
+    this.loadingPage.set(true);
     const rawgKey = this.rawgKey;
     return this.httpClient
       .get<RawgApiResponse>(`${this.apiUrl}/games?key=${rawgKey}`)
       .pipe(
         tap({
-          next: (res) => this.allGames.set(res.results),
+          next: (res) => {
+            this.allGames.set(res.results);
+          },
+          complete: () => this.loadingPage.set(false),
         })
       );
   }
@@ -87,6 +95,82 @@ export class RawgApiService {
       .pipe(
         tap({
           next: (res) => this.selectedGameById.set(res),
+        })
+      );
+  }
+
+  trendingGames() {
+    this.loadingPage.set(true);
+
+    const rawgKey = this.rawgKey;
+    const today = new Date();
+    const pastDate = new Date();
+    pastDate.setMonth(today.getMonth() - 4); // 4 months ago
+
+    const formatDate = (date: Date): string => date.toISOString().split('T')[0]; // format as yyyy-mm-dd
+
+    const startDate = formatDate(pastDate);
+    const endDate = formatDate(today);
+
+    return this.httpClient
+      .get<RawgApiResponse>(
+        `${this.apiUrl}/games?page_size=21&ordering=-added&dates=${startDate},${endDate}&key=${rawgKey}`
+      )
+      .pipe(
+        tap({
+          next: (res) => {
+            this.trendingGamesArray.set(res.results);
+          },
+          complete: () => this.loadingPage.set(false),
+        })
+      );
+  }
+
+  topRated() {
+    this.loadingPage.set(true);
+
+    const today = new Date();
+    const pastYear = new Date();
+    pastYear.setFullYear(today.getFullYear() - 1); // One year ago from today
+
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+    const startDate = formatDate(pastYear);
+    const endDate = formatDate(today);
+
+    return this.httpClient
+      .get<RawgApiResponse>(
+        `${this.apiUrl}/games?page_size=21&ordering=-rating&dates=${startDate},${endDate}&key=${rawgKey}`
+      )
+      .pipe(
+        tap({
+          next: (res) => {
+            this.topRatedGames.set(res.results);
+          },
+          complete: () => this.loadingPage.set(false),
+        })
+      );
+  }
+
+  upcoming() {
+    this.loadingPage.set(true);
+
+    const today = new Date();
+    const future = new Date();
+    future.setFullYear(today.getFullYear() + 1);
+
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+    const startDate = formatDate(today);
+    const endDate = formatDate(future);
+    return this.httpClient
+      .get<RawgApiResponse>(
+        `${this.apiUrl}/games?page-size=21&dates=${startDate},${endDate}&ordering=-added&key=${rawgKey}`
+      )
+      .pipe(
+        tap({
+          next: (res) => {
+            this.upcomingGames.set(res.results);
+          },
+          complete: () => this.loadingPage.set(false),
         })
       );
   }

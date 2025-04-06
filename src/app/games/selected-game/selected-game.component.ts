@@ -14,11 +14,17 @@ import { Game } from '../../interfaces';
 import { switchMap, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingComponent } from '../../loading/loading.component';
+import { ErrorComponent } from '../../error/error.component';
 
 @Component({
   selector: 'app-selected-game',
   standalone: true,
-  imports: [GamesHeaderComponent, GamesListComponent, LoadingComponent],
+  imports: [
+    GamesHeaderComponent,
+    GamesListComponent,
+    LoadingComponent,
+    ErrorComponent,
+  ],
   templateUrl: './selected-game.component.html',
   styleUrl: './selected-game.component.css',
 })
