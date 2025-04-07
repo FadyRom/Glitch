@@ -1,10 +1,48 @@
+@keyframes fade-copy {
+  0% {
+    transform: translateY(-2rem);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+}
+
+.copy-link {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10rem;
+  margin: auto;
+  top: 10px;
+  left: 0;
+  z-index: 100000;
+}
+
+.copy-link p {
+  background-color: rgba(128, 128, 128);
+  width: 15rem;
+  height: 5rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  box-shadow: 0 0 5px black;
+  text-transform: capitalize;
+  animation: fade-copy 0.2s linear;
+}
+
 header {
   position: relative;
   width: 100%;
   height: 400px;
   display: flex;
   border-radius: 30px;
-  padding: 13vh 10vw;
+  padding: 5rem 10vw;
 }
 
 header::before {
@@ -105,6 +143,12 @@ h1 {
 
 .data h3 {
   color: rgba(242, 150, 32, 1);
+}
+
+@media (min-width: 777px) {
+  header {
+    height: 500px;
+  }
 }
 
 @media (max-width: 996px) {

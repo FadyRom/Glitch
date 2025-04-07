@@ -1,3 +1,10 @@
+@if (copyLinkStatus()) {
+
+<div class="copy-link">
+  <p>link is copied</p>
+</div>
+}
+
 <header
   [ngStyle]="{
     backgroundImage: 'url(' + gameBackgroundInput() + ') ',
@@ -34,6 +41,10 @@
       </i>
       {{ false ? " in wishlist" : " add to wishlist" }}
     </button>
+    <i
+      class="fa-solid fa-arrow-up-right-from-square info-button"
+      (click)="copyLink()"
+    ></i>
   </div>
   <div class="game-data">
     <div class="data">

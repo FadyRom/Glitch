@@ -11,11 +11,19 @@ import { PandaScoreApiService } from '../../panda-score-api.service';
 import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
+import { ErrorComponent } from '../../error/error.component';
+import { LoadingComponent } from '../../loading/loading.component';
 
 @Component({
   selector: 'app-match',
   standalone: true,
-  imports: [LayoutComponent, AsyncPipe, HeaderComponent],
+  imports: [
+    LayoutComponent,
+    AsyncPipe,
+    HeaderComponent,
+    ErrorComponent,
+    LoadingComponent,
+  ],
   templateUrl: './match.component.html',
   styleUrl: './match.component.css',
 })
@@ -26,6 +34,7 @@ export class MatchComponent {
 
   currentRoute = signal<string>('');
   matchData = computed(() => this.pandaScoreService.matchData());
+  loading = computed(() => this.pandaScoreService.loadingPage());
 
   matchDataSub$ = this.pandaScoreService.getData('', 'matches');
   ngOnInit() {

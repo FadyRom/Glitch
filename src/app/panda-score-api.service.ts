@@ -11,9 +11,11 @@ export class PandaScoreApiService {
   private url = pandaScore;
   private httpClient = inject(HttpClient);
 
+  loadingPage = signal<boolean>(false);
   matchData = signal<MatchResponse[]>([]);
 
   getData(gameName: string, dataType: string, dataStatus: string = 'upcoming') {
+    this.loadingPage.set(true);
     return this.httpClient
       .get<MatchResponse[]>(
         `${this.url}/${gameName}/${dataType}/${dataStatus}`,
@@ -27,6 +29,10 @@ export class PandaScoreApiService {
         tap({
           next: (res) => {
             this.matchData.set(res);
+            this.loadingPage.set(false);
+          },
+          error: () => {
+            this.loadingPage.set(false);
           },
         })
       );
