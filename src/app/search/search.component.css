@@ -30,6 +30,7 @@ h2 {
   aspect-ratio: 16/9;
   box-shadow: 0 0 5px white;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .data-card:hover {

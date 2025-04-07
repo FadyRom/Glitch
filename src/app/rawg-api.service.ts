@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { rawgKey, rawgUrl } from '../enviroment';
 import { Game, GameResponse, RawgApiResponse } from './interfaces';
 import { tap } from 'rxjs';
+import { SearchInterface } from './search';
 
 @Injectable({
   providedIn: 'root',
@@ -54,6 +55,7 @@ export class RawgApiService {
     tba: false,
     updated: '',
   });
+  searchResults = signal<SearchInterface[]>([]);
   loadingPage = signal<boolean>(false);
 
   getHomeGames() {
@@ -65,6 +67,21 @@ export class RawgApiService {
         tap({
           next: (res) => {
             this.allGames.set(res.results);
+          },
+          complete: () => this.loadingPage.set(false),
+        })
+      );
+  }
+
+  searchGameName(searchTerm: string) {
+    this.loadingPage.set(true);
+    const rawgKey = this.rawgKey;
+    return this.httpClient
+      .get<any>(`${this.apiUrl}/games?search=${searchTerm}&key=${rawgKey}`)
+      .pipe(
+        tap({
+          next: (res) => {
+            this.searchResults.set(res.results);
           },
           complete: () => this.loadingPage.set(false),
         })

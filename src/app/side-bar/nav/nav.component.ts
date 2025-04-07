@@ -1,5 +1,5 @@
-import { Component, output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, output } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -9,9 +9,15 @@ import { RouterLink } from '@angular/router';
   styleUrl: './nav.component.css',
 })
 export class NavComponent {
+  private router = inject(Router);
+
   showSide = output<boolean>();
 
   sideState() {
     this.showSide.emit(true);
+  }
+
+  searchGame(searchTerm: string) {
+    this.router.navigate(['search/', searchTerm]);
   }
 }

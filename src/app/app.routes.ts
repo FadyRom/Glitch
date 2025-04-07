@@ -8,8 +8,9 @@ import { TrendingComponent } from './games/trending/trending.component';
 import { TopRatedComponent } from './games/top-rated/top-rated.component';
 import { UpcomingComponent } from './games/upcoming/upcoming.component';
 import { EsportsComponent } from './esports/esports.component';
-import { LayoutComponent } from './esports/layout/layout.component';
 import { MatchComponent } from './esports/match/match.component';
+import { SearchComponent } from './search/search.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -56,7 +57,10 @@ export const routes: Routes = [
     path: 'esports/:esportType',
     component: MatchComponent,
   },
-
+  {
+    path: 'search/:searchTerm',
+    component: SearchComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -64,5 +68,9 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];

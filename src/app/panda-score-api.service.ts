@@ -27,7 +27,6 @@ export class PandaScoreApiService {
         tap({
           next: (res) => {
             this.matchData.set(res);
-            console.log(res);
           },
         })
       );

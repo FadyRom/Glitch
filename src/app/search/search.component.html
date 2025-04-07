@@ -1,0 +1,22 @@
+<div class="container">
+  @if (loading()) {
+  <app-error pleaseCheck="network" />
+  }@else {
+
+  <div class="data-grid">
+    @for (result of searchResults(); track result.id) {
+
+    <div class="data-card" (click)="selectedSearchGame(result.id)">
+      <img
+        [src]="result.background_image"
+        [alt]="result.name"
+        class="card-image"
+      />
+      <div class="data-info">
+        <h3>{{ result.name }}</h3>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>

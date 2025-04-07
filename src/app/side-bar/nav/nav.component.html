@@ -3,12 +3,14 @@
     <h2 routerLink="/" class="glitch-logo">Glitch</h2>
     <div class="search-field-div">
       <input
+        #search
         type="search"
         name="search-field"
         id="search-field"
         placeholder="search..."
+        (keydown.enter)="searchGame(search.value)"
       />
-      <i class="fa-solid fa-search"></i>
+      <i class="fa-solid fa-search" (click)="searchGame(search.value)"></i>
     </div>
   </div>
 
