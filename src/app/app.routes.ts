@@ -7,8 +7,6 @@ import { SignupComponent } from './signup/signup.component';
 import { TrendingComponent } from './games/trending/trending.component';
 import { TopRatedComponent } from './games/top-rated/top-rated.component';
 import { UpcomingComponent } from './games/upcoming/upcoming.component';
-import { EsportsComponent } from './esports/esports.component';
-import { MatchComponent } from './esports/match/match.component';
 import { SearchComponent } from './search/search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -37,26 +35,7 @@ export const routes: Routes = [
     path: 'games/:selectedGameId',
     component: SelectedGameComponent,
   },
-  {
-    path: 'esports',
-    component: EsportsComponent,
-  },
-  {
-    path: 'esports/live',
-    component: SignupComponent,
-  },
-  {
-    path: 'esports/rankings',
-    component: LoginComponent,
-  },
-  {
-    path: 'esports/tournaments',
-    component: EsportsComponent,
-  },
-  {
-    path: 'esports/:esportType',
-    component: MatchComponent,
-  },
+  
   {
     path: 'search/:searchTerm',
     component: SearchComponent,
