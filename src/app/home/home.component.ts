@@ -3,7 +3,6 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { GamesListComponent } from './games-list/games-list.component';
 import { RawgApiService } from '../rawg-api.service';
 import { AsyncPipe } from '@angular/common';
-import { TournamentsComponent } from './tournaments/tournaments.component';
 import { ErrorComponent } from '../error/error.component';
 
 @Component({
@@ -12,7 +11,6 @@ import { ErrorComponent } from '../error/error.component';
   imports: [
     CarouselComponent,
     GamesListComponent,
-    TournamentsComponent,
     AsyncPipe,
     ErrorComponent,
   ],
