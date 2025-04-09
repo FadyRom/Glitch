@@ -44,3 +44,8 @@ Thumbs.db
 # ui source
 ui-source.txt
 ./src/enviroment.ts
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

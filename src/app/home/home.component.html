@@ -3,7 +3,7 @@
   @if (getGamesSub$ |async) {
 
   <app-games-list
-    [buttonRoute]="'/'"
+    buttonRoute="/games"
     [listHeader]="'Popular Games'"
     [gamesList]="allGamesArray()"
   />

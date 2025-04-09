@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,31 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  private router = inject(Router);
+  private destroyRef = inject(DestroyRef);
+  private authService = inject(AuthService);
   loginData = {
     email: '',
     password: '',
   };
 
-  onSubmit() {
-    console.log('Login submitted:', this.loginData);
+  submitted = signal<boolean>(false);
+  user = computed(() => this.authService.signInState());
+
+  ngOnInit(): void {
+    if (this.user()) {
+      this.router.navigate(['/']);
+    }
+  }
+  validateEmail(email: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+  onSubmit(form: NgForm) {
+    this.submitted.set(true);
+
+    if (form.valid) {
+      this.authService.login(this.loginData.email, this.loginData.password);
+    }
   }
 }

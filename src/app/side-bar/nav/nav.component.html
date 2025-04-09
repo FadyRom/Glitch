@@ -15,10 +15,15 @@
   </div>
 
   <div class="signin-burger">
+    @if (!loginState()) {
+
     <div class="signin">
-      <a routerLink="/login" class="login">login</a>
-      <a href="/signup" class="signup">signup</a>
+      <a routerLink="/login" class="login">Login</a>
+      <a href="/signup" class="signup">Signup</a>
     </div>
+    }@else {
+    <div class="profile"></div>
+    }
     <i class="fa-solid fa-list" (click)="sideState()"></i>
   </div>
 </nav>

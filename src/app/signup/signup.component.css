@@ -86,6 +86,16 @@ button {
   font-size: 16px;
 }
 
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
 @media (max-width: 480px) {
   .signup-card {
     padding: 1.5rem;

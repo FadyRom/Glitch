@@ -1,7 +1,9 @@
 <section>
   <div class="list-header">
     <h2>{{ listHeader() }}</h2>
-    <a [routerLink]="[buttonRoute()]" [queryParams]="{ genre: querParams() }"
+    <a
+      [routerLink]="[buttonRoute()]"
+      [queryParams]="querParams() ? { genre: querParams() } : null"
       >View All</a
     >
   </div>

@@ -1,5 +1,4 @@
 import {
-  AfterViewChecked,
   Component,
   DestroyRef,
   inject,

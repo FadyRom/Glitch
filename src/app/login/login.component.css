@@ -49,6 +49,16 @@
   border-color: #ff9f1c;
 }
 
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
 .btn-primary {
   width: 100%;
   padding: 0.75rem;

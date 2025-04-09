@@ -3,6 +3,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { Subscription } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
 
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private authService = inject(AuthService);
 
   ngOnInit(): void {
     const routerSub = this.router.events.subscribe((event: any) => {
@@ -23,6 +25,9 @@ export class AppComponent implements OnInit {
         window.scrollTo({ top: 0, behavior: 'instant' });
       }
     });
+
+    this.authService.checkAuthState();
+    console.log(this.authService.signInState());
     this.destroyRef.onDestroy(() => routerSub.unsubscribe());
   }
 }
