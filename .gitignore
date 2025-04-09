@@ -43,7 +43,7 @@ Thumbs.db
 
 # ui source
 ui-source.txt
-./src/enviroment.ts
+/src/enviroment.ts
 
 # Firebase
 .firebase
