@@ -44,7 +44,6 @@
         </li>
       </ul>
     </li>
-    
 
     <li class="li-routes">
       <a
@@ -64,6 +63,18 @@
             ><i class="fa-solid fa-fire"></i> wishlist</a
           >
         </li>
+        @if (user()) {
+
+        <li class="dropdown-li" (click)="logout()">
+          <a><i class="fas fa-sign-out-alt"></i> logout</a>
+        </li>
+        }@else {
+        <li class="dropdown-li">
+          <a routerLinkActive="active-dropdown" routerLink="/login"
+            ><i class="fas fa-sign-in-alt"></i> login</a
+          >
+        </li>
+        }
       </ul>
     </li>
 
@@ -118,7 +129,6 @@
         </li>
       </ul>
     </li>
-    
 
     <li class="li-routes">
       <a
@@ -138,6 +148,12 @@
             ><i class="fa-solid fa-fire"></i> wishlist</a
           >
         </li>
+        @if (user()) {
+
+        <li class="dropdown-li" (click)="logout()">
+          <a><i class="fas fa-sign-out-alt"></i> logout</a>
+        </li>
+        }
       </ul>
     </li>
 

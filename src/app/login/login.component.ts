@@ -1,4 +1,11 @@
-import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  DestroyRef,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -22,11 +29,6 @@ export class LoginComponent {
   submitted = signal<boolean>(false);
   user = computed(() => this.authService.signInState());
 
-  ngOnInit(): void {
-    if (this.user()) {
-      this.router.navigate(['/']);
-    }
-  }
   validateEmail(email: string): boolean {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
@@ -36,6 +38,7 @@ export class LoginComponent {
 
     if (form.valid) {
       this.authService.login(this.loginData.email, this.loginData.password);
+      this.router.navigate(['/']);
     }
   }
 }

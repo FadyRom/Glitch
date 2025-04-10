@@ -8,12 +8,10 @@
   background-color: black;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .glitch {
-  position: sticky;
-  top: 5rem;
-  left: 0;
   color: #ff9f1c;
   font-size: 100px;
   font-weight: bold;

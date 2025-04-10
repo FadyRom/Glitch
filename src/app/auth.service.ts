@@ -6,7 +6,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
+  User,
 } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -14,13 +16,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   private auth = inject(Auth);
+  private router = inject(Router);
 
-  signInState = signal<any>(null);
+  signInState = signal<User | null>(null);
 
-  login(email: string, password: string) {
-    return signInWithEmailAndPassword(this.auth, email, password).then(
+  async login(email: string, password: string) {
+    return await signInWithEmailAndPassword(this.auth, email, password).then(
       (user) => {
-        this.signInState.set(user);
+        this.signInState.set(user.user);
+        localStorage.setItem('isLogged', 'true');
       }
     );
   }
@@ -43,14 +47,20 @@ export class AuthService {
 
   checkAuthState() {
     onAuthStateChanged(this.auth, (user) => {
-      if (user) {
-        this.signInState.set(user);
-      }
+      this.signInState.set(user);
     });
   }
 
   logout() {
     signOut(this.auth);
     this.signInState.set(null);
+    localStorage.setItem('isLogged', 'false');
+    if (
+      window.location.pathname == '/profile' ||
+      '/profile/library' ||
+      '/profile/wishlist'
+    ) {
+      this.router.navigate(['/']);
+    }
   }
 }

@@ -2,6 +2,7 @@ import {
   Component,
   computed,
   DestroyRef,
+  effect,
   inject,
   OnInit,
   signal,
@@ -33,11 +34,9 @@ export class SignupComponent implements OnInit {
   passwordMismatch = signal<boolean>(false);
   user = computed(() => this.authService.signInState());
 
-  ngOnInit(): void {
-    if (this.user()) {
-      this.router.navigate(['/']);
-    }
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
   // Custom validation methods
   validateEmail(email: string): boolean {
@@ -63,6 +62,7 @@ export class SignupComponent implements OnInit {
         this.signupData.password,
         this.signupData.username
       );
+      this.router.navigate(['/']);
     }
   }
 }

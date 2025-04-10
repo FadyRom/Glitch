@@ -8,6 +8,8 @@
     [gamesList]="allGamesArray()"
   />
   }@else {
-  <app-error pleaseCheck="network" />
+  <div class="loading-error">
+    <app-error pleaseCheck="network" />
+  </div>
   }
 </div>

@@ -25,6 +25,5 @@ export class HomeComponent implements OnInit {
   getGamesSub$ = this.RawgApiService.getHomeGames();
 
   ngOnInit(): void {
-    // this.RawgApiService.getAllGames().subscribe();
   }
 }

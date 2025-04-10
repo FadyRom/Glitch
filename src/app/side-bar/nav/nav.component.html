@@ -22,7 +22,16 @@
       <a href="/signup" class="signup">Signup</a>
     </div>
     }@else {
-    <div class="profile"></div>
+    <div class="profile-section">
+      <div class="profile-image">
+        <img src="avatar.svg" alt="Profile image" />
+      </div>
+      <div class="profile-info">
+        <h3 class="profile-name" routerLink="/profile">
+          {{ loginState()?.displayName }}
+        </h3>
+      </div>
+    </div>
     }
     <i class="fa-solid fa-list" (click)="sideState()"></i>
   </div>

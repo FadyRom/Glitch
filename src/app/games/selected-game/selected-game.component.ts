@@ -43,7 +43,6 @@ export class SelectedGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params: any) => {
-      console.log(params.get('selectedGameId'));
       this.fetchInfo(params.get('selectedGameId'));
     });
   }

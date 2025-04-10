@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import { ContentComponent } from './content/content.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [ContentComponent, HeaderComponent],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
 })
-export class ProfileComponent {
-
-}
+export class ProfileComponent {}

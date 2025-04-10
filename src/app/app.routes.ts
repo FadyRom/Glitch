@@ -9,6 +9,11 @@ import { TopRatedComponent } from './games/top-rated/top-rated.component';
 import { UpcomingComponent } from './games/upcoming/upcoming.component';
 import { SearchComponent } from './search/search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LibraryComponent } from './profile/library/library.component';
+import { WishlistComponent } from './profile/wishlist/wishlist.component';
+import { userStateGuard } from './user-state.guard';
+import { showProfileGuard } from './show-profile.guard';
 
 export const routes: Routes = [
   {
@@ -35,7 +40,7 @@ export const routes: Routes = [
     path: 'games/:selectedGameId',
     component: SelectedGameComponent,
   },
-  
+
   {
     path: 'search/:searchTerm',
     component: SearchComponent,
@@ -43,10 +48,27 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [userStateGuard],
   },
   {
     path: 'signup',
     component: SignupComponent,
+    canActivate: [userStateGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [showProfileGuard],
+  },
+  {
+    path: 'profile/library',
+    component: LibraryComponent,
+    canActivate: [showProfileGuard],
+  },
+  {
+    path: 'profile/wishlist',
+    component: WishlistComponent,
+    canActivate: [showProfileGuard],
   },
   {
     path: '**',

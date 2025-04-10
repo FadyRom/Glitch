@@ -16,7 +16,7 @@ import { Game } from '../interfaces';
 import { FormsModule } from '@angular/forms';
 import { PaginatorComponent } from '../paginator/paginator.component';
 import { LoadingComponent } from '../loading/loading.component';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GamingService } from './gaming.service';
 import { GameGridComponent } from './game-grid/game-grid.component';
 import { ErrorComponent } from '../error/error.component';
@@ -29,7 +29,6 @@ import { ErrorComponent } from '../error/error.component';
     FormsModule,
     PaginatorComponent,
     LoadingComponent,
-    RouterLink,
     GameGridComponent,
     ErrorComponent,
   ],

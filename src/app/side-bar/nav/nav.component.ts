@@ -1,4 +1,4 @@
-import { Component, computed, inject, output } from '@angular/core';
+import { Component, computed, inject, output, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../auth.service';
 
@@ -22,5 +22,9 @@ export class NavComponent {
 
   searchGame(searchTerm: string) {
     this.router.navigate(['search/', searchTerm]);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
