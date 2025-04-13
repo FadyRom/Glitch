@@ -39,6 +39,12 @@ export class ProfileService {
         )
         .pipe(
           tap({
+            next: () => {
+              if (this.userId() === 'false') {
+                this.libraryGames.set([]);
+                this.authService.showLoginPopup.set(true);
+              }
+            },
             error: (err) => {
               this.libraryGames.set(lib);
               this.errorAdding.set(true);
@@ -65,6 +71,12 @@ export class ProfileService {
         )
         .pipe(
           tap({
+            next: () => {
+              if (this.userId() === 'false') {
+                this.wishlistGames.set([]);
+                this.authService.showLoginPopup.set(true);
+              }
+            },
             error: (err) => {
               this.wishlistGames.set(wl);
               this.errorAdding.set(true);
@@ -88,11 +100,13 @@ export class ProfileService {
         tap({
           next: (res) => {
             if (place === 'library') {
-              this.libraryGames.set(res.games);
-              console.log(this.libraryGames());
+              if (this.userId() !== 'false') {
+                this.libraryGames.set(res.games);
+              }
             } else {
-              this.wishlistGames.set(res.games);
-              console.log(this.wishlistGames());
+              if (this.userId() !== 'false') {
+                this.wishlistGames.set(res.games);
+              }
             }
           },
           error: (err) => {},

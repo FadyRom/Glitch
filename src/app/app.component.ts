@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './auth.service';
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
 import { ProfileService } from './profile.service';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { ProfileService } from './profile.service';
     SideBarComponent,
     FooterComponent,
     ErrorPopupComponent,
+    LoginPopupComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -34,6 +36,7 @@ export class AppComponent implements OnInit {
   private profileService = inject(ProfileService);
 
   errorAdding = computed(() => this.profileService.errorAdding());
+  loginPopup = computed(() => this.authService.showLoginPopup());
   ngOnInit(): void {
     localStorage.setItem('isLogged', 'false');
     const routerSub = this.router.events.subscribe((event: any) => {

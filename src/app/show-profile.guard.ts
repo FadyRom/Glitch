@@ -8,7 +8,7 @@ export const showProfileGuard: CanActivateFn = (route, state) => {
   if (localStorage.getItem('isLogged') != 'false') {
     return true;
   } else {
-    router.navigate(['/']);
+    authService.showLoginPopup.set(true);
     return false;
   }
 };

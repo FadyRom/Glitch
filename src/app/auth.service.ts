@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private auth = inject(Auth);
   private router = inject(Router);
-  showPopup = signal(false);
+  showLoginPopup = signal(false);
 
   signInState = signal<User | null>(null);
   userId = signal<string | null>(localStorage.getItem('isLogged'));
