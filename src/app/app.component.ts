@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
 
   errorAdding = computed(() => this.profileService.errorAdding());
   ngOnInit(): void {
+    localStorage.setItem('isLogged', 'false');
     const routerSub = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo({ top: 0, behavior: 'instant' });

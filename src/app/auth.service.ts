@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private auth = inject(Auth);
   private router = inject(Router);
+  showPopup = signal(false);
 
   signInState = signal<User | null>(null);
   userId = signal<string | null>(localStorage.getItem('isLogged'));
@@ -52,7 +53,10 @@ export class AuthService {
   checkAuthState() {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
+        localStorage.setItem('isLogged', user.uid);
+
         this.signInState.set(user);
+        this.userId.set(localStorage.getItem('isLogged'));
       }
     });
   }
