@@ -5,8 +5,7 @@ import { AuthService } from './auth.service';
 export const showProfileGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  console.log(localStorage.getItem('isLogged'));
-  if (localStorage.getItem('isLogged') == 'true') {
+  if (localStorage.getItem('isLogged') != 'false') {
     return true;
   } else {
     router.navigate(['/']);

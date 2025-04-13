@@ -76,11 +76,4 @@ export class GamingService {
       queryParamsHandling: genreParams.length ? 'merge' : undefined, // Only merge if genres exist
     });
   }
-
-  addGameToWishlist(game: GameResponse) {
-    console.log(game);
-  }
-  addGameToLibrary(game: GameResponse) {
-    console.log(game);
-  }
 }

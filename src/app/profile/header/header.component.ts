@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -11,4 +11,6 @@ import { AuthService } from '../../auth.service';
 export class HeaderComponent {
   private authService = inject(AuthService);
   user = computed(() => this.authService.signInState());
+  libraryCount = input.required<number>();
+  wishlistCount = input.required<number>();
 }

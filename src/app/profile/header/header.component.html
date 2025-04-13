@@ -8,10 +8,7 @@
   </div>
   <div class="profile-container">
     <div class="profile-image">
-      <img
-        src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix&backgroundColor=b6e3f4"
-        alt="Profile"
-      />
+      <img src="avatar.svg" alt="Profile" />
     </div>
     <div class="profile-info">
       <h1>{{ user()?.displayName }}</h1>
@@ -20,11 +17,11 @@
   </div>
   <div class="stats">
     <div class="stat-item">
-      <span class="number">75</span>
+      <span class="number">{{ libraryCount() }}</span>
       <span class="label">Games In Library</span>
     </div>
     <div class="stat-item">
-      <span class="number">140</span>
+      <span class="number">{{ wishlistCount() }}</span>
       <span class="label">Wishlist Games</span>
     </div>
   </div>

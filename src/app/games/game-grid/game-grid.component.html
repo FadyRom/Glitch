@@ -2,12 +2,16 @@
   @for (game of games(); track game.id) {
   <div class="game-card">
     <i
-      [className]="false ? ' fa-solid fa-bookmark' : 'fa-regular fa-bookmark'"
-      (click)="bookmarkGame(game.id)"
+      [className]="
+        gameInLibrary(game) ? ' fa-solid fa-bookmark' : 'fa-regular fa-bookmark'
+      "
+      (click)="bookmarkGame(game)"
     ></i>
     <i
-      [className]="false ? ' fa-solid fa-heart' : 'fa-regular fa-heart'"
-      (click)="bookmarkGame(game.id)"
+      [className]="
+        gameInWishlist(game) ? ' fa-solid fa-heart' : 'fa-regular fa-heart'
+      "
+      (click)="wishlistGame(game)"
     >
     </i>
 

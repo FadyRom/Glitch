@@ -11,10 +11,11 @@ import { RawgApiService } from '../../rawg-api.service';
 import { GamesHeaderComponent } from '../games-header/games-header.component';
 import { GamesListComponent } from '../../home/games-list/games-list.component';
 import { Game } from '../../interfaces';
-import { switchMap, tap } from 'rxjs';
+import { forkJoin, switchMap, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingComponent } from '../../loading/loading.component';
 import { ErrorComponent } from '../../error/error.component';
+import { ProfileService } from '../../profile.service';
 
 @Component({
   selector: 'app-selected-game',
@@ -32,6 +33,7 @@ export class SelectedGameComponent implements OnInit {
   private rawgApiService = inject(RawgApiService);
   private destroyRef = inject(DestroyRef);
   private activatedRoute = inject(ActivatedRoute);
+  private profileService = inject(ProfileService);
 
   selectedGameId = input.required<string>();
   game = computed(() => this.rawgApiService.selectedGameById());
@@ -44,6 +46,14 @@ export class SelectedGameComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params: any) => {
       this.fetchInfo(params.get('selectedGameId'));
+    });
+    const sub = forkJoin([
+      this.profileService.getGames('library'),
+      this.profileService.getGames('wishlist'),
+    ]).subscribe();
+
+    this.destroyRef.onDestroy(() => {
+      sub.unsubscribe();
     });
   }
   fetchInfo(gameId: string) {
@@ -78,5 +88,12 @@ export class SelectedGameComponent implements OnInit {
     this.destroyRef.onDestroy(() => {
       sub.unsubscribe();
     });
+  }
+
+  gameInLibrary(game: Game) {
+    return this.profileService.libraryGames().some((g) => g.id === game.id);
+  }
+  gameInWishlist(game: Game) {
+    return this.profileService.wishlistGames().some((g) => g.id === game.id);
   }
 }

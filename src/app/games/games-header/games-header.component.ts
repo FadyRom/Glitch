@@ -1,7 +1,8 @@
 import { NgStyle } from '@angular/common';
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, DestroyRef, inject, input, signal } from '@angular/core';
 import { GamingService } from '../gaming.service';
-import { GameResponse } from '../../interfaces';
+import { Game, GameResponse } from '../../interfaces';
+import { ProfileService } from '../../profile.service';
 
 @Component({
   selector: 'app-games-header',
@@ -11,19 +12,22 @@ import { GameResponse } from '../../interfaces';
   styleUrl: './games-header.component.css',
 })
 export class GamesHeaderComponent {
+  private profileService = inject(ProfileService);
+  private destroyRef = inject(DestroyRef);
+
   gameNameInput = input.required<string>();
   gameBackgroundInput = input.required<string>();
   game = input.required<GameResponse>();
-
-  private gamingService = inject(GamingService);
+  gameInLibrary = input.required<boolean>();
+  gameInWishlist = input.required<boolean>();
 
   copyLinkStatus = signal<boolean>(false);
 
   addWishlist() {
-    this.gamingService.addGameToWishlist(this.game());
+    this.profileService.addToProfile(this.game(), 'wishlist').subscribe();
   }
   addLibrary() {
-    this.gamingService.addGameToLibrary(this.game());
+    this.profileService.addToProfile(this.game(), 'library').subscribe();
   }
 
   copyLink() {

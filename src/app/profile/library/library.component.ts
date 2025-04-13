@@ -1,6 +1,14 @@
-import { Component, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
+import { ProfileService } from '../../profile.service';
 
 @Component({
   selector: 'app-library',
@@ -9,55 +17,15 @@ import { HeaderComponent } from '../../header/header.component';
   templateUrl: './library.component.html',
   styleUrl: './library.component.css',
 })
-export class LibraryComponent {
-  games = signal([
-    {
-      added: 21937,
-      added_by_status: {
-        yet: 549,
-        owned: 12679,
-        beaten: 6194,
-        toplay: 622,
-        dropped: 1145,
-      },
-      background_image:
-        'https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg',
-    },
-    {
-      added: 21937,
-      added_by_status: {
-        yet: 549,
-        owned: 12679,
-        beaten: 6194,
-        toplay: 622,
-        dropped: 1145,
-      },
-      background_image:
-        'https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg',
-    },
-    {
-      added: 21937,
-      added_by_status: {
-        yet: 549,
-        owned: 12679,
-        beaten: 6194,
-        toplay: 622,
-        dropped: 1145,
-      },
-      background_image:
-        'https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg',
-    },
-    {
-      added: 21937,
-      added_by_status: {
-        yet: 549,
-        owned: 12679,
-        beaten: 6194,
-        toplay: 622,
-        dropped: 1145,
-      },
-      background_image:
-        'https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg',
-    },
-  ]);
+export class LibraryComponent implements OnInit {
+  private profileService = inject(ProfileService);
+  private destroyRef = inject(DestroyRef);
+
+  libraryGames = computed(() => this.profileService.libraryGames());
+  ngOnInit(): void {
+    const sub1 = this.profileService.getGames('library').subscribe();
+    this.destroyRef.onDestroy(() => {
+      sub1.unsubscribe();
+    });
+  }
 }

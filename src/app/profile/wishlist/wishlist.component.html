@@ -1,15 +1,17 @@
-<app-header headerRoute="Wishlist" />
+<app-header headerRoute="Library" />
+
 <div class="library-container">
   <h1>Wishlist</h1>
-  <!-- <div class="game-grid">
-    @for (game of games(); track game) {
 
-    <div class="game-card" [routerLink]="['/games/',game.id]">
+  <div class="game-grid">
+    @for (game of wishlistGames(); track game.id) {
+
+    <div class="game-card" [routerLink]="['/games/', game.id]">
       <div class="game-image">
-        <img [src]="game.background_image" [alt]="game.name"/>
+        <img [src]="game.background_image" [alt]="game.name" />
       </div>
       <div class="game-details">
-        <h3>{{game.name}}</h3>
+        <h3>{{ game.name }}</h3>
         <div class="community-info"></div>
         <div class="card-actions">
           <button class="collection-btn">{{ game.released }}</button>
@@ -20,5 +22,5 @@
       </div>
     </div>
     }
-  </div> -->
+  </div>
 </div>

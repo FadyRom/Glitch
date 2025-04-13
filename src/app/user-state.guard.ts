@@ -5,8 +5,7 @@ import { AuthService } from './auth.service';
 export const userStateGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  console.log(localStorage.getItem('isLogged'));
-  if (localStorage.getItem('isLogged') == 'true') {
+  if (localStorage.getItem('isLogged') != 'false') {
     router.navigate(['/']);
     return false;
   } else {

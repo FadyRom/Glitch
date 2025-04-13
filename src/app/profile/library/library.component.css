@@ -39,6 +39,7 @@ h1 {
 }
 
 .game-card {
+  cursor: pointer;
   background: #2c2f33;
   border-radius: 12px;
   overflow: hidden;

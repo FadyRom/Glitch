@@ -22,12 +22,12 @@
       <a href="/signup" class="signup">Signup</a>
     </div>
     }@else {
-    <div class="profile-section">
+    <div class="profile-section" routerLink="/profile">
       <div class="profile-image">
         <img src="avatar.svg" alt="Profile image" />
       </div>
       <div class="profile-info">
-        <h3 class="profile-name" routerLink="/profile">
+        <h3 class="profile-name">
           {{ loginState()?.displayName }}
         </h3>
       </div>

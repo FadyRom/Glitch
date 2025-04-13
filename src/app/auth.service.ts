@@ -9,7 +9,6 @@ import {
   User,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,12 +18,15 @@ export class AuthService {
   private router = inject(Router);
 
   signInState = signal<User | null>(null);
+  userId = signal<string | null>(localStorage.getItem('isLogged'));
 
   async login(email: string, password: string) {
     return await signInWithEmailAndPassword(this.auth, email, password).then(
       (user) => {
         this.signInState.set(user.user);
-        localStorage.setItem('isLogged', 'true');
+        localStorage.setItem('isLogged', user.user.uid);
+
+        this.userId.set(localStorage.getItem('isLogged'));
       }
     );
   }
@@ -41,13 +43,17 @@ export class AuthService {
           displayName: username,
         });
         this.signInState.set(user);
+        localStorage.setItem('isLogged', user.uid);
+        this.userId.set(localStorage.getItem('isLogged'));
       }
     });
   }
 
   checkAuthState() {
     onAuthStateChanged(this.auth, (user) => {
-      this.signInState.set(user);
+      if (user) {
+        this.signInState.set(user);
+      }
     });
   }
 
@@ -55,11 +61,8 @@ export class AuthService {
     signOut(this.auth);
     this.signInState.set(null);
     localStorage.setItem('isLogged', 'false');
-    if (
-      window.location.pathname == '/profile' ||
-      '/profile/library' ||
-      '/profile/wishlist'
-    ) {
+    location.reload();
+    if (window.location.pathname.includes('/profile')) {
       this.router.navigate(['/']);
     }
   }

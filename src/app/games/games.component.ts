@@ -177,15 +177,10 @@ export class GamesComponent implements OnInit {
   pageChange(event: number) {
     this.currentPage.set(event);
     if (event <= this.totalPages() && event > 0) {
-      window.scrollTo({ top: 300, behavior: 'smooth' });
       this.router.navigate(['/games'], {
         queryParams: { page: this.currentPage() },
         queryParamsHandling: 'merge', // Keeps existing query params
       });
     }
   }
-
-  // selectedGame(game: Game) {
-
-  // }
 }
