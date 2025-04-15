@@ -36,7 +36,7 @@
 
 .fa-bookmark:hover,
 .fa-heart:hover {
-  font-weight: 900; /* This makes it solid */
+  color: white;
 }
 
 .fa-heart {
