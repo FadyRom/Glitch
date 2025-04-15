@@ -32,9 +32,7 @@
           <li>
             <a routerLink="/games" routerLinkActive=".activeLink">Games</a>
           </li>
-          <li>
-            <a routerLink="/esports" routerLinkActive=".activeLink">Esport</a>
-          </li>
+
           <li>
             <a routerLink="/profile" routerLinkActive=".activeLink">Profile</a>
           </li>
@@ -44,9 +42,15 @@
       <div class="link-column">
         <h3>EXPLORE</h3>
         <ul>
-          <li><a routerLink="" routerLinkActive=".activeLink">Trending</a></li>
           <li>
-            <a routerLink="" routerLinkActive=".activeLink">Tournaments</a>
+            <a routerLink="/games/trending" routerLinkActive=".activeLink"
+              >Trending</a
+            >
+          </li>
+          <li>
+            <a routerLink="/games/upcoming" routerLinkActive=".activeLink"
+              >Upcoming</a
+            >
           </li>
         </ul>
       </div>
@@ -68,10 +72,12 @@
         <h3>Follow Us</h3>
 
         <div class="social-links">
-          <a routerLink="" routerLinkActive=".activeLink"
+          <a
+            href="https://linkedin.com/in/fadi-romany-b1a982267"
+            target="_blank"
             ><i class="fa-brands fa-linkedin"></i> LinkedIn</a
           >
-          <a routerLink="" routerLinkActive=".activeLink"
+          <a href="https://github.com/FadyRom" target="_blank"
             ><i class="fa-brands fa-github"></i> Github</a
           >
         </div>
