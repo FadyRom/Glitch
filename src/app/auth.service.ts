@@ -17,6 +17,7 @@ export class AuthService {
   private auth = inject(Auth);
   private router = inject(Router);
   showLoginPopup = signal(false);
+  sidebarState = signal(false);
 
   signInState = signal<User | null>(null);
   userId = signal<string | null>(localStorage.getItem('isLogged'));

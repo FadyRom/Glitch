@@ -35,7 +35,17 @@ export class GameGridComponent {
     const sub = forkJoin([
       this.profileService.getGames('library'),
       this.profileService.getGames('wishlist'),
-    ]).subscribe();
+    ]).subscribe({
+      next: () => {
+        if (
+          this.authService.userId() == 'false' ||
+          this.authService.userId() == null
+        ) {
+          this.profileService.libraryGames.set([]);
+          this.profileService.wishlistGames.set([]);
+        }
+      },
+    });
 
     this.destroyRef.onDestroy(() => {
       sub.unsubscribe();
@@ -46,13 +56,31 @@ export class GameGridComponent {
 
   bookmarkGame(game: Game) {
     this.profileService.addToProfile(game, 'library').subscribe({
-      next: (res) => console.log(res),
+      next: (res) => {
+        if (
+          this.authService.userId() == 'false' ||
+          this.authService.userId() == null
+        ) {
+          this.profileService.libraryGames.set([]);
+          this.profileService.wishlistGames.set([]);
+          this.authService.showLoginPopup.set(true);
+        }
+      },
     });
   }
 
   wishlistGame(game: Game) {
     this.profileService.addToProfile(game, 'wishlist').subscribe({
-      next: (res) => console.log(res),
+      next: (res) => {
+        if (
+          this.authService.userId() == 'false' ||
+          this.authService.userId() == null
+        ) {
+          this.profileService.libraryGames.set([]);
+          this.profileService.wishlistGames.set([]);
+          this.authService.showLoginPopup.set(true);
+        }
+      },
     });
   }
 

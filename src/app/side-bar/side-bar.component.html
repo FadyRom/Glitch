@@ -3,6 +3,7 @@
 @if (sideState()) {
 
 <aside id="aside-small">
+  <div class="background-div" (click)="showSide2()"></div>
   <div class="logo-close">
     <h2>Glitch</h2>
     <i class="fa-solid fa-close" (click)="showSide2()"></i>
@@ -91,6 +92,7 @@
     </li>
   </ul>
 </aside>
+<div class="background-div-aside" (click)="showSide2()"></div>
 }
 <aside id="aside-big">
   <ul class="ul-main">

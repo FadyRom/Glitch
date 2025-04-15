@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem('isLogged', 'false');
     const routerSub = this.router.events.subscribe((event: any) => {
+      this.authService.sidebarState.set(false);
       if (event instanceof NavigationEnd) {
         window.scrollTo({ top: 0, behavior: 'instant' });
       }

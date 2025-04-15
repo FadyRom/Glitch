@@ -109,7 +109,9 @@ export class ProfileService {
               }
             }
           },
-          error: (err) => {},
+          error: (err) => {
+            this.errorAdding.set(true);
+          },
         })
       );
   }

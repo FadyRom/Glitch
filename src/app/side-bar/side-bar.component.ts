@@ -14,12 +14,12 @@ export class SideBarComponent {
   private authService = inject(AuthService);
   user = computed(() => this.authService.signInState());
 
-  sideState = signal(false);
+  sideState = computed(() => this.authService.sidebarState());
   showSide(event: boolean) {
-    this.sideState.set(event);
+    this.authService.sidebarState.set(event);
   }
   showSide2() {
-    this.sideState.set(!this.sideState());
+    this.authService.sidebarState.set(!this.sideState());
   }
 
   logout() {
