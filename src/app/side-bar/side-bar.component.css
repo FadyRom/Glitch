@@ -188,4 +188,8 @@ hr {
   #aside-small {
     display: none;
   }
+
+  .background-div-aside {
+    display: none;
+  }
 }
